@@ -5,6 +5,7 @@ use App\Filament\Resources\SurveyResponses\Pages\FollowUpQueue;
 use App\Filament\Resources\SurveyResponses\Pages\ListSurveyResponses;
 use App\Models\SurveyResponse;
 use App\Models\User;
+use Filament\Actions\Testing\TestAction;
 use Livewire\Livewire;
 
 test('guests cannot reach the follow-up queue', function () {
@@ -38,6 +39,17 @@ test('the follow-up status can be updated inline', function () {
         ->call('updateTableColumnState', 'follow_up_status', $surveyResponse->getKey(), FollowUpStatus::Contacted->value);
 
     expect($surveyResponse->refresh()->follow_up_status)->toBe(FollowUpStatus::Contacted);
+});
+
+test('a response can be deleted from the list', function () {
+    $this->actingAs(User::factory()->create());
+
+    $surveyResponse = SurveyResponse::factory()->completed()->create();
+
+    Livewire::test(ListSurveyResponses::class)
+        ->callAction(TestAction::make('delete')->table($surveyResponse));
+
+    expect(SurveyResponse::query()->find($surveyResponse->id))->toBeNull();
 });
 
 test('the responses list renders for staff', function () {

@@ -3,6 +3,9 @@
 namespace App\Filament\Resources\SurveyResponses\Tables;
 
 use App\Enums\SurveySource;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\IconColumn;
@@ -90,6 +93,12 @@ class SurveyResponsesTable
             ])
             ->recordActions([
                 ViewAction::make(),
+                DeleteAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
             ]);
     }
 }
