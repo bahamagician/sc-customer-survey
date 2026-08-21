@@ -21,9 +21,9 @@ const emit = defineEmits<{
                 :disabled="disabled"
                 :class="
                     cn(
-                        'border-input flex min-h-12 items-center justify-center rounded-md border text-base font-medium transition-colors',
+                        'flex min-h-12 items-center justify-center rounded-md border border-input text-base font-medium transition-colors',
                         modelValue === score
-                            ? 'bg-primary text-primary-foreground border-primary'
+                            ? 'border-primary bg-primary text-primary-foreground'
                             : 'bg-background hover:bg-accent hover:text-accent-foreground',
                     )
                 "

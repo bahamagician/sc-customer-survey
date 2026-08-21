@@ -4,18 +4,20 @@ import { CircleCheck } from '@lucide/vue';
 </script>
 
 <template>
-    <div class="flex flex-1 flex-col items-center justify-center gap-4 text-center">
+    <div
+        class="flex flex-1 flex-col items-center justify-center gap-4 text-center"
+    >
         <Head title="Thank You" />
 
-        <CircleCheck class="text-primary size-14" />
+        <CircleCheck class="size-14 text-primary" />
 
         <h1 class="text-2xl font-semibold">Thank you!</h1>
 
-        <p class="text-muted-foreground text-base">
+        <p class="text-base text-muted-foreground">
             Your feedback helps us make every visit better.
         </p>
 
-        <p class="text-muted-foreground text-sm">
+        <p class="text-sm text-muted-foreground">
             If you left your email, you've been entered into this month's gift
             card draw.
         </p>

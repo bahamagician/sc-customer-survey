@@ -64,7 +64,11 @@ function hydrateFromProps(): void {
     listValue.value = Array.isArray(value) ? (value as string[]) : [];
     otherText.value = '';
 
-    if (props.question.type === 'multi_select_other' && value && typeof value === 'object') {
+    if (
+        props.question.type === 'multi_select_other' &&
+        value &&
+        typeof value === 'object'
+    ) {
         const saved = value as { selected?: string[]; other?: string | null };
         listValue.value = saved.selected ?? [];
         otherText.value = saved.other ?? '';
@@ -89,7 +93,10 @@ watch(() => props.question.key, hydrateFromProps);
 
 function submit(value: unknown): void {
     router.patch(
-        answer.url({ response: props.responseId, question: props.question.key }),
+        answer.url({
+            response: props.responseId,
+            question: props.question.key,
+        }),
         // contact_time is a honeypot — humans never see it, bots fill it.
         { value: value as never, contact_time: '' },
         {
@@ -113,12 +120,7 @@ function submitMultiSelectOther(): void {
 
         <header class="grid gap-4">
             <div class="flex min-h-9 items-center">
-                <Button
-                    v-if="previousKey"
-                    variant="ghost"
-                    size="sm"
-                    as-child
-                >
+                <Button v-if="previousKey" variant="ghost" size="sm" as-child>
                     <Link
                         :href="
                             questionRoute.url({
@@ -146,14 +148,11 @@ function submitMultiSelectOther(): void {
                 {{ question.label }}
                 <span
                     v-if="question.optional"
-                    class="text-muted-foreground block text-sm font-normal"
+                    class="block text-sm font-normal text-muted-foreground"
                     >Optional</span
                 >
             </h1>
-            <p
-                v-if="question.hint"
-                class="text-muted-foreground text-sm"
-            >
+            <p v-if="question.hint" class="text-sm text-muted-foreground">
                 {{ question.hint }}
             </p>
         </div>

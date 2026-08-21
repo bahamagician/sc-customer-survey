@@ -29,9 +29,9 @@ function toggle(key: string): void {
             type="button"
             :class="
                 cn(
-                    'border-input flex min-h-11 items-center gap-1.5 rounded-full border px-4 text-sm font-medium transition-colors',
+                    'flex min-h-11 items-center gap-1.5 rounded-full border border-input px-4 text-sm font-medium transition-colors',
                     modelValue.includes(key)
-                        ? 'bg-primary text-primary-foreground border-primary'
+                        ? 'border-primary bg-primary text-primary-foreground'
                         : 'bg-background hover:bg-accent hover:text-accent-foreground',
                 )
             "

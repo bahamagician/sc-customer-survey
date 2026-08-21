@@ -13,7 +13,7 @@ const percentage = computed(() => (props.position / props.total) * 100);
 <template>
     <div class="grid gap-2">
         <Progress :model-value="percentage" class="h-2" />
-        <p class="text-muted-foreground text-xs">
+        <p class="text-xs text-muted-foreground">
             Question {{ position }} of {{ total }}
         </p>
     </div>
